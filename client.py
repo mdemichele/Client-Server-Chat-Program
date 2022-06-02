@@ -17,7 +17,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # Prompt user for input 
         message = input(">>>> ")
         
-        # Limit messages to 1024 bytes length 
+        # Limit messages to 900 bytes length 
         while len(message) > 900:
             print("\n")
             print("ERROR! Your message is too long. Type in something shorter please.")
@@ -25,11 +25,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         
         # close socket if \q is typed 
         if message == "\q":
-            message = "The Client has left the conversation. Type \q to quit."
+            # Inform user that the connection will close 
+            print("You've decided to quit. Goodbye!")
+            
+            # Send closing message to the server, so the server can successfully close connection on its end 
             byteMessage = bytes(message, 'ascii')
             s.sendall(byteMessage)
             continueConversation = False 
             s.close()
+            
             
         # Send message to server and receive response back 
         else:
@@ -38,5 +42,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         
             # Receive response back from the server 
             response = s.recv(1024)
-            print("SERVER: {}".format(response.decode('ascii')))
+            
+            # Close connection if server has quit 
+            if response.decode('ascii') == '\q':
+                print("Server has decided to quit. Closing the connection!")
+                continueConversation = False 
+                s.close()
+            else:
+                print("SERVER: {}".format(response.decode('ascii')))
+            
         
