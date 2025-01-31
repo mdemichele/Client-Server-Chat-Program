@@ -11,6 +11,7 @@ HOST = "localhost"
 PORT = 10892
 
 # Create a listening socket 
+# AF_INET: an address family where address format is host and port number. Commonly used in socket programming
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     
     # Bind socket to host and port 
