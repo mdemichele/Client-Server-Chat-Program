@@ -11,7 +11,8 @@ HOST = "localhost"
 PORT = 10892
 
 # Create a listening socket 
-# AF_INET: an address family where address format is host and port number. Commonly used in socket programming
+# AF_INET: an address family where address format is host and port number. Commonly used in socket programming. Default for socket
+# SOCK_STREAM: type of socket. Default for socket
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     
     # Bind socket to host and port 
@@ -19,6 +20,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     print("Listening for connections on port {}...".format(PORT))
     print("Type \\q to quit.")
     print("Waiting for message from client...")
+    
     # Listen for one connection at a time 
     s.listen(1)
         
