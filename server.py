@@ -1,4 +1,7 @@
 # SOURCE: https://docs.python.org/3/library/socket.html
+# Author: Matt DeMichele
+# Last Update: January 31, 2025
+
 import socket 
 
 # Declare variables for the host name and port number 
@@ -11,7 +14,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     # Bind socket to host and port 
     s.bind((HOST, PORT))
     print("Listening for connections on port {}...".format(PORT))
-    print("Type \q to quit.")
+    print("Type \\q to quit.")
     print("Waiting for message from client...")
     # Listen for one connection at a time 
     s.listen(1)
@@ -26,7 +29,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         data = conn.recv(1024)
         
         # Close socket if client has typed \q 
-        if data.decode('ascii') == '\q':
+        if data.decode('ascii') == '\\q':
             print("Client decided to quit. Closing Connection!")
             continueConversation = False 
             conn.close()
@@ -44,7 +47,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 response = input(">>>> ")
         
             # Close conn socket object and exit loop
-            if response == "\q":
+            if response == "\\q":
                 # Inform user that the server is closing the connection 
                 print("You've decided to quit. Goodbye!")
                 

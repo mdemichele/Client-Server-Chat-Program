@@ -11,7 +11,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     
     continueConversation = True 
     print(f'Connected to {HOST} at port {PORT}.')
-    print("Type \q to quit.")
+    print("Type \\q to quit.")
     while continueConversation:
     
         # Prompt user for input 
@@ -24,7 +24,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             message = input(">>>> ")
         
         # close socket if \q is typed 
-        if message == "\q":
+        if message == "\\q":
             # Inform user that the connection will close 
             print("You've decided to quit. Goodbye!")
             
@@ -44,7 +44,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             response = s.recv(1024)
             
             # Close connection if server has quit 
-            if response.decode('ascii') == '\q':
+            if response.decode('ascii') == '\\q':
                 print("Server has decided to quit. Closing the connection!")
                 continueConversation = False 
                 s.close()
