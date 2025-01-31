@@ -18,3 +18,4 @@ To quit the program, type `\q` in either the server or the client program when i
 # TODOs: 
 - Allow server to exit even if the client doesn't input anything. 
 - input validation. Right now, the program isn't safe at all. Validation checks are definitely necessary. 
+- Add support for IPv4 and/or other address formats. Currently, supports IPv4
