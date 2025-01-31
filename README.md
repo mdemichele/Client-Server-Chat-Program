@@ -15,3 +15,6 @@ To start the client, open a new terminal window and type `python client.py`. The
 
 To quit the program, type `\q` in either the server or the client program when it is their turn to write input.
 
+# TODOs: 
+- Allow server to exit even if the client doesn't input anything. 
+- input validation. Right now, the program isn't safe at all. Validation checks are definitely necessary. 

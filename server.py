@@ -5,6 +5,8 @@
 import socket 
 
 # Declare variables for the host name and port number 
+# host: a string representing either a hostname in internet odmain notation or an IPv4 address
+# port: an integer
 HOST = "localhost"
 PORT = 10892
 
